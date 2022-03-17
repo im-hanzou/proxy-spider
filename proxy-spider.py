@@ -6,6 +6,20 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
+from colorama import *
+
+print(Fore.RED+'''
+██████╗ ██████╗  ██████╗ ██╗  ██╗██╗   ██╗    ███████╗██████╗ ██╗██████╗ ███████╗██████╗ 
+██╔══██╗██╔══██╗██╔═══██╗╚██╗██╔╝╚██╗ ██╔╝    ██╔════╝██╔══██╗██║██╔══██╗██╔════╝██╔══██╗
+██████╔╝██████╔╝██║   ██║ ╚███╔╝  ╚████╔╝     ███████╗██████╔╝██║██║  ██║█████╗  ██████╔╝
+██╔═══╝ ██╔══██╗██║   ██║ ██╔██╗   ╚██╔╝      ╚════██║██╔═══╝ ██║██║  ██║██╔══╝  ██╔══██╗
+██║     ██║  ██║╚██████╔╝██╔╝ ██╗   ██║       ███████║██║     ██║██████╔╝███████╗██║  ██║
+╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝       ╚══════╝╚═╝     ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝
+Credits to: https://github/xtekky                                                                                         
+''')
+
+print('Starting Spider')
+sleep(2)
 
 chrome_options = Options()
 chrome_options.add_argument("--headless")
@@ -23,7 +37,9 @@ class Proxy_selector:
 
     full_proxy = [item for sublist in zip(ip_list, port_list) for item in sublist]
     proxy_list = [ ':'.join(x) for x in zip(full_proxy[0::2], full_proxy[1::2]) ]
-    print('Https Proxies: ', proxy_list)
+    print(Fore.WHITE+'Https Proxies: ', proxy_list)
+
+
 
 for i in proxy_list:
     proxy_ip_port = i
@@ -43,15 +59,16 @@ for i in proxy_list:
     try:
         driver.get('https://www.tiktok.com/signup/phone-or-email/email')
         print('\r', end="")
-        print("Proxy: ", proxy_ip_port, "valid")
+        print(Fore.WHITE+"Proxy:", proxy_ip_port, " - valid - Code [0]")
         driver.close()
-        print('Loading...', end="")
+        print(Fore.YELLOW+'Loading...', end="")
 
     except:
         print('\r', end="")
-        print("Proxy: ", proxy_ip_port, "invalid")
+        print("Proxy:", proxy_ip_port, " - invalid - Code [1]")
         driver.close()
-        print('Loading...', end="")
+        print(Fore.YELLOW+'Loading...', end="")
 
 if __name__ == "__main__":
     Proxy_selector()
+
