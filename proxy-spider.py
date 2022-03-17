@@ -25,8 +25,6 @@ class Proxy_selector:
     proxy_list = [ ':'.join(x) for x in zip(full_proxy[0::2], full_proxy[1::2]) ]
     print('Https Proxies: ', proxy_list)
 
-
-
 for i in proxy_list:
     proxy_ip_port = i
 
